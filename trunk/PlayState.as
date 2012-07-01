@@ -6,14 +6,20 @@ package
 	{
 		override public function create():void
 		{
-			FlxG.bgColor = 0xffffeeee;;
-			var s:FlxSprite = new FlxSprite(100, 100);
-			s.makeGraphic(32, 32);
-			add(s);
+			FlxG.bgColor = 0xffee9966;
+			var player:Character = new Character();
+			player.x = 100;
+			player.y = 100;
+			add(player);
+			var ground:FlxSprite = new FlxSprite(80, 200);
+			ground.makeGraphic(480, 32);
+			ground.immovable = true;
+			add(ground);
 		}
 		
 		override public function update():void
 		{
+			FlxG.collide();
 			super.update();
 		}
 	}
