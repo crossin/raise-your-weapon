@@ -7,19 +7,22 @@ package
 		protected var player:Character;
 		public var enemy:Character;
 		
+		public var heroes:FlxGroup;
+		public var enemies:FlxGroup;
+		
 		override public function create():void
 		{
 			FlxG.bgColor = 0xffeecc99;
 			
-			player = new Character();
-			player.x = 100;
-			player.y = 100;
-			add(player);
+			heroes = new FlxGroup();
+			add(heroes);
+			enemies = new FlxGroup();
+			add(enemies);
 			
-			enemy = new Character();
-			enemy.x = 500;
-			enemy.y = 100;
-			add(enemy);
+			heroes.add(new Hero1);
+			heroes.add(new Monster1);
+
+			//enemies.add(enemy);
 			
 			var ground:FlxSprite = new FlxSprite(80, 200);
 			ground.makeGraphic(480, 32);
