@@ -15,9 +15,11 @@ package
 		protected var range:Number;
 		protected var speed:Number;
 		protected var state:PlayState;
+		protected var isHero:Boolean;
 		
-		public function Character(isHero:Boolean = false)
+		public function Character(isHr:Boolean = false)
 		{
+			isHero = isHr;
 			makeGraphic(16, 16, 0xff88cc55);
 			x = isHero ? 100 : 500;
 			y = 100;
@@ -42,6 +44,7 @@ package
 			}
 			
 			state = PlayState(FlxG.state);
+			trace(state.enemies.members.length)
 		}
 		
 		override public function update():void
@@ -71,7 +74,7 @@ package
 			if (timeAttacked > intervalAttack)
 			{
 				flicker(0.5);
-				(PlayState(FlxG.state)).enemy.flicker();
+				target.flicker();
 				timeAttacked = 0;
 			}
 		}
@@ -88,11 +91,17 @@ package
 		
 		protected function findTarget():Boolean
 		{
-			var enms:FlxGroup = state.enemies;
+			var enms:Array = isHero ? state.enemies.members : state.heroes.members;
+			trace(state);
+			trace(enms.length);
+			
 			for each (var enm:Character in enms)
 			{
-				trace("xxx");
-				trace(enm);
+				if (inRange(enm))
+				{
+					target = enm;
+					return true;
+				}
 			}
 			return false;
 		}

@@ -8,10 +8,11 @@ package
 	 */
 	public class Hero1 extends Character
 	{
-		public function Hero1(isHero:Boolean = true)
+		public function Hero1(isHr:Boolean = true)
 		{
-			super(isHero);
+			super(isHr);
 			makeGraphic(16, 16, 0xffcc8855);
+			range = 100;
 		}
 	}
 }
