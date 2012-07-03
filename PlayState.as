@@ -20,7 +20,7 @@ package
 			add(enemies);
 			
 			heroes.add(new Hero1);
-			heroes.add(new Monster1);
+			enemies.add(new Monster1);
 
 			//enemies.add(enemy);
 			
