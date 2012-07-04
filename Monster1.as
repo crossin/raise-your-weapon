@@ -11,7 +11,7 @@ package
 		public function Monster1()
 		{
 			super(false);
-			makeGraphic(16, 16, 0xff8855cc);
+			body.makeGraphic(16, 16, 0xff8855cc);
 		}
 	}
 }
