@@ -1,13 +1,15 @@
 package
 {
+	import mx.core.FlexSprite;
 	import org.flixel.*;
 	
 	/**
 	 * ...
 	 * @author Crossin
 	 */
-	public class Character extends FlxSprite
+	public class Character extends FlxGroup
 	{
+		public var body:FlxSprite;
 		protected var life:int;
 		protected var intervalAttack:Number;
 		protected var timeAttacked:Number;
@@ -20,11 +22,12 @@ package
 		public function Character(isHr:Boolean = false)
 		{
 			isHero = isHr;
-			makeGraphic(16, 16, 0xff88cc55);
-			x = isHero ? 100 : 500;
-			y = 100;
-			acceleration.y = 200; //gravity
-			drag.x = 100;
+			body.makeGraphic(16, 16, 0xff88cc55);
+			add(body);
+			body.x = isHero ? 100 : 500;
+			body.y = 100;
+			body.acceleration.y = 200; //gravity
+			body.drag.x = 100;
 			
 			life = 100;
 			intervalAttack = 2;
@@ -44,7 +47,8 @@ package
 			}
 			
 			state = PlayState(FlxG.state);
-			trace(state.enemies.members.length)
+			
+			
 		}
 		
 		override public function update():void
@@ -92,9 +96,6 @@ package
 		protected function findTarget():Boolean
 		{
 			var enms:Array = isHero ? state.enemies.members : state.heroes.members;
-			trace(state);
-			trace(enms.length);
-			
 			for each (var enm:Character in enms)
 			{
 				if (inRange(enm))
