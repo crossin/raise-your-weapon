@@ -7,9 +7,8 @@ package
 	 * ...
 	 * @author Crossin
 	 */
-	public class Character extends FlxGroup
+	public class Character extends FlxSprite
 	{
-		public var body:FlxSprite;
 		protected var life:int;
 		protected var intervalAttack:Number;
 		protected var timeAttacked:Number;
@@ -22,12 +21,11 @@ package
 		public function Character(isHr:Boolean = false)
 		{
 			isHero = isHr;
-			body.makeGraphic(16, 16, 0xff88cc55);
-			add(body);
-			body.x = isHero ? 100 : 500;
-			body.y = 100;
-			body.acceleration.y = 200; //gravity
-			body.drag.x = 100;
+			makeGraphic(16, 16, 0xff88cc55);
+			x = isHero ? 100 : 500;
+			y = 100;
+			acceleration.y = 200; //gravity
+			drag.x = 100;
 			
 			life = 100;
 			intervalAttack = 2;
